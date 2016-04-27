@@ -1,8 +1,15 @@
+#r "Newtonsoft.Json"
+#r "System.Runtime"
+#r "System.Globalization"
+
 using System.Net;
+using Humanizer;
 
 public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
 {
     log.Verbose($"C# HTTP trigger function processed a request. RequestUri={req.RequestUri}");
+
+    log.Verbose(" Time : " + DateTime.Now.AddHours(-1).Humanize(false));
 
     // parse query parameter
     string name = req.GetQueryNameValuePairs()
